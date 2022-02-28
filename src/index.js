@@ -1,14 +1,18 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import Login from "./view/Login";
 import reportWebVitals from "./reportWebVitals";
-import "./index.css";
+import CssBaseline from "./index.ts";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+
+import Login from "./view/Login";
+import Books from "./view/Books";
 
 ReactDOM.render(
   <BrowserRouter>
+    <CssBaseline />
     <Routes>
       <Route exact path="/" element={<Login />} />
+      <Route exact path="/books" element={<Books />} />
     </Routes>
   </BrowserRouter>,
   document.getElementById("root")
