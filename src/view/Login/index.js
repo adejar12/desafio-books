@@ -20,7 +20,7 @@ function Login() {
   const navigate = useNavigate();
 
   async function entrar() {
-    setError(!error);
+    setError(false);
     const response = await Auth.read(email, password);
 
     if (response) {
@@ -36,7 +36,7 @@ function Login() {
       <Container>
         <ContainerTitulo>
           <Logo />
-          <Subtitulo>Books</Subtitulo>
+          <Subtitulo white>Books</Subtitulo>
         </ContainerTitulo>
         <FormTextInput
           label="Email"

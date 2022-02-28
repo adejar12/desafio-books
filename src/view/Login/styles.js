@@ -20,7 +20,7 @@ export const ContainerTitulo = styled.div`
 
 export const Logo = styled.div`
   position: relative;
-  background-image: url("/logo.png");
+  background-image: url("/assets/image/png/logo.png");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -30,7 +30,7 @@ export const Logo = styled.div`
 `;
 
 export const Subtitulo = styled.span`
-  color: ${theme.WHITE};
+  color: ${(props) => (props.white ? theme.WHITE : theme.GRAY_DARK)};
   font-style: normal;
   font-weight: 300;
   font-size: 28px;
