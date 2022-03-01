@@ -1,15 +1,20 @@
 import React, { useEffect, useState } from "react";
 
-// import { Container } from './styles';
+import { useNavigate } from "react-router-dom";
 
 import ImageBackGround from "../../components/ImageBackGround";
 import Book from "../../components/Book";
 import Modal from "../../components/Modal";
+import Pages from "../../components/Pages";
 
 import BackgroundImage from "../../assets/image/jpg/backgroundImages_books.png";
 import ExitIcon from "../../assets/image/svg/log_out.svg";
 
-import BooksController from "../../controllers/Books_Controller";
+import { useBooks } from "../../hooks/books";
+import { useAuth } from "../../hooks/auth";
+
+import { getAll } from "../../store/modules/books/actions";
+import auth from "../../store/modules/auth/store";
 
 import { Subtitulo } from "../Login/styles";
 
@@ -24,19 +29,25 @@ import {
 } from "./styles";
 
 function Books() {
-  const [oneBook, setOneBook] = useState([]);
   const [isVisible, setIsVisible] = useState(false);
   const [bookModal, setBookModal] = useState({});
+  const [page, setPage] = useState(1);
+
+  const books = useBooks();
+  const { current_user } = useAuth();
+
+  const navigate = useNavigate();
 
   useEffect(() => {
-    books();
+    getBooks();
   }, []);
 
-  async function books() {
-    const response = await BooksController.read(1, 12);
+  useEffect(() => {
+    getBooks();
+  }, [page]);
 
-    setOneBook(response.data.data);
-    console.log(response);
+  async function getBooks() {
+    await getAll(page, 12);
   }
 
   function openModal(id) {
@@ -60,13 +71,24 @@ function Books() {
             <Subtitulo>Books</Subtitulo>
           </ContainerLogo>
           <ContainerUsuario>
-            <span>Bem vindo!, Guilherme!</span>
-            <Exit source={ExitIcon} />
+            <span>Bem vindo!, {current_user.user.name}!</span>
+            <Exit
+              source={ExitIcon}
+              onClick={() => {
+                auth.clean();
+                navigate("/");
+              }}
+            />
           </ContainerUsuario>
         </ContainerCabecalho>
         <ContainerBooks>
-          {oneBook &&
-            oneBook.map((book) => <Book book={book} onClick={openModal} />)}
+          {books.books.length > 0 &&
+            books.books.map((book) => (
+              <Book book={book} onClick={openModal} key={book.id} />
+            ))}
+        </ContainerBooks>
+        <ContainerBooks style={{ justifyContent: "flex-end", marginTop: 0 }}>
+          <Pages page={page} setPage={setPage} totalPage={books.totalPages} />
         </ContainerBooks>
 
         {isVisible && (

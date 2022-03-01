@@ -2,7 +2,8 @@ import React, { useState } from "react";
 
 import { useNavigate } from "react-router-dom";
 
-import Auth from "../../controllers/Auth_Controller";
+import { signIn } from "../../store/modules/auth/actions";
+import { useAuth } from "../../hooks/auth";
 
 import FormTextInput from "../../components/FormTextInput";
 import Error from "../../components/Error";
@@ -11,23 +12,30 @@ import ImageBackGround from "../../components/ImageBackGround";
 import { Container, Logo, Subtitulo, ContainerTitulo } from "./styles";
 
 import BackgroundImage from "../../assets/image/jpg/backgroundImage_login.jpg";
+import { useEffect } from "react";
 
 function Login() {
   const [email, setEmail] = useState("desafio@ioasys.com.br");
   const [password, setPassword] = useState("12341234");
   const [error, setError] = useState(false);
 
+  const user = useAuth();
+
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (user.access_token) {
+      navigate("/books");
+    } else {
+      if (user.current_user.loading === false) {
+        setError(!error);
+      }
+    }
+  }, [user]);
 
   async function entrar() {
     setError(false);
-    const response = await Auth.read(email, password);
-
-    if (response) {
-      navigate("/books");
-    } else {
-      setError(!error);
-    }
+    await signIn(email, password);
   }
 
   return (
