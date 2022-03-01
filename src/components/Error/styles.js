@@ -42,8 +42,8 @@ export const Container = styled.div`
 export const ContainerText = styled.span`
   color: ${theme.WHITE};
   font-weight: bold;
-  font-size: 16px;
-  line-height: 16px;
+  font-size: 1.6rem;
+  line-height: 1.6rem;
 `;
 
 export const ContainerTriangle = styled.div`

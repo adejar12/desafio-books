@@ -15,6 +15,10 @@ export const Container = styled.div`
   :hover {
     cursor: pointer;
   }
+
+  @media (max-width: 600px) {
+    margin-right: 0px;
+  }
 `;
 
 export const Image = styled.div`
@@ -46,23 +50,23 @@ export const ContainetConteudo = styled.div`
 export const Titulo = styled.span`
   font-style: normal;
   font-weight: 500;
-  font-size: 14px;
-  line-height: 20px;
+  font-size: 1.4rem;
+  line-height: 2rem;
   color: ${theme.GRAY_DARK};
 `;
 
 export const Autor = styled.span`
   font-style: normal;
   font-weight: normal;
-  font-size: 12px;
-  line-height: 20px;
+  font-size: 1.2rem;
+  line-height: 2rem;
   color: ${theme.DARK_PINK};
 `;
 
 export const Info = styled.span`
   font-style: normal;
   font-weight: normal;
-  font-size: 12px;
-  line-height: 20px;
+  font-size: 1.2rem;
+  line-height: 2rem;
   color: ${theme.GRAY_DARK_SECONDARY};
 `;

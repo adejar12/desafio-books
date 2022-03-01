@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { theme } from "../../utils/Colors";
 
-export const Container = styled.div`
+export const ContainerInput = styled.div`
   display: flex;
   flex-direction: column;
   position: relative;
@@ -23,9 +23,9 @@ export const ContainerLabel = styled.div`
 export const Label = styled.h2`
   position: relative;
   color: ${theme.WHITE};
-  font-size: 12px;
+  font-size: 1.2rem;
   font-weight: 400;
-  line-height: 16px;
+  line-height: 1.6rem;
   opacity: 0.5;
   top: -10px;
 `;
@@ -45,8 +45,8 @@ export const Tinput = styled.input`
   font-family: Heebo;
   font-style: normal;
   font-weight: normal;
-  font-size: 16px;
-  line-height: 24px;
+  font-size: 1.6rem;
+  line-height: 2.4rem;
 `;
 
 export const Button = styled.button`
@@ -68,11 +68,40 @@ export const Button = styled.button`
     transition-duration: 0.8s;
     top: 0.5px;
   }
+
+  @media (max-width: 402px) {
+    left: 72%;
+  }
+
+  @media (max-width: 383px) {
+    left: 70%;
+  }
+
+  @media (max-width: 320px) {
+    left: 65%;
+  }
 `;
 
 export const TextButton = styled.a`
   color: ${theme.PINK};
-  font-size: 16px;
-  line-height: 20px;
+  font-size: 1.6rem;
+  line-height: 2rem;
   font-weight: 500;
+`;
+
+export const Container = styled.div`
+  position: relative;
+  width: 368px;
+
+  @media (max-width: 402px) {
+    width: 350px;
+  }
+
+  @media (max-width: 383px) {
+    width: 325px;
+  }
+
+  @media (max-width: 320px) {
+    width: 278px;
+  }
 `;

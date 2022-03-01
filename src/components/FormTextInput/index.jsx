@@ -1,11 +1,12 @@
 import React, { forwardRef } from "react";
 import {
-  Container,
+  ContainerInput,
   TextButton,
   Tinput,
   Label,
   ContainerLabel,
   Button,
+  Container,
 } from "./styles";
 
 const FormTextInput = (
@@ -25,27 +26,22 @@ const FormTextInput = (
   ref
 ) => {
   return (
-    <div
-      style={{
-        position: "relative",
-        width: 368,
-      }}
-    >
+    <Container>
       {label && (
         <ContainerLabel>
           <Label>{label}</Label>
         </ContainerLabel>
       )}
-      <Container style={style}>
+      <ContainerInput style={style}>
         <Tinput {...rest} ref={ref} autoCapitalize="none" button={button} />
-      </Container>
+      </ContainerInput>
 
       {button && (
         <Button>
           <TextButton onClick={onClick}>{textButton}</TextButton>
         </Button>
       )}
-    </div>
+    </Container>
   );
 };
 

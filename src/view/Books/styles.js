@@ -2,7 +2,6 @@ import styled from "styled-components";
 import { theme } from "../../utils/Colors";
 
 export const Container = styled.div`
-  background-color: blue;
   height: 100vh;
   width: 85%;
   display: flex;
@@ -25,6 +24,10 @@ export const ContainerLogo = styled.div`
   flex-direction: row;
   width: 200px;
   justify-content: space-between;
+
+  @media (max-width: 466px) {
+    width: 300px;
+  }
 `;
 
 export const ContainerUsuario = styled.div`
@@ -33,10 +36,16 @@ export const ContainerUsuario = styled.div`
   align-items: center;
 
   span {
-    font-size: 12px;
-    line-height: 16px;
+    font-size: 1.2rem;
+    line-height: 1.6rem;
     color: ${theme.GRAY_DARK};
     margin-right: 10px;
+
+    @media (max-width: 466px) {
+      visibility: hidden;
+      opacity: 0;
+      margin-right: 0px;
+    }
   }
 `;
 
@@ -57,11 +66,23 @@ export const Exit = styled.div`
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+
+  :hover {
+    cursor: pointer;
+  }
+
+  @media (max-width: 466px) {
+    position: absolute;
+    right: 0px;
+  }
 `;
 
 export const ContainerBooks = styled.div`
+  position: relative;
   margin-top: 50px;
+  width: 100%;
   max-width: 1160px;
+  justify-content: center;
 
   display: flex;
   flex-wrap: wrap;

@@ -1,6 +1,7 @@
 import React from "react";
 
 import QuotesIcon from "../../assets/image/svg/quotes.svg";
+import CloseIcon from "../../assets/image/svg/close.svg";
 
 import {
   Container,
@@ -15,12 +16,13 @@ import {
   ContainerResenha,
   Resenha,
   Quotes,
+  Close,
 } from "./styles";
 
 function Modal({ onClick, bookModal }) {
-  console.log(bookModal);
   return (
-    <Container onClick={onClick}>
+    <Container>
+      <Close source={CloseIcon} onClick={onClick} />
       <ContainerModal>
         <ContainetImage>
           <Image source={bookModal.imageUrl} />

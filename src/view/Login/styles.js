@@ -33,6 +33,6 @@ export const Subtitulo = styled.span`
   color: ${(props) => (props.white ? theme.WHITE : theme.GRAY_DARK)};
   font-style: normal;
   font-weight: 300;
-  font-size: 28px;
-  line-height: 40px;
+  font-size: 2.8rem;
+  line-height: 4rem;
 `;
