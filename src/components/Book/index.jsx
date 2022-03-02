@@ -16,6 +16,7 @@ function Book({ book, onClick }) {
       onClick={() => {
         onClick(book);
       }}
+      key={book.id}
     >
       <ContainetImage>
         <Image source={book.imageUrl} />
@@ -38,8 +39,8 @@ function Book({ book, onClick }) {
             flexDirection: "column",
           }}
         >
-          <Info>{book.pageCount}</Info>
-          <Info>{book.publisher}</Info>
+          <Info>{book.pageCount} páginas</Info>
+          <Info>Editora {book.publisher}</Info>
           <Info>Publicado em {book.published}</Info>
         </div>
       </ContainetConteudo>
