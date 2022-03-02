@@ -1,18 +1,24 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import { useNavigate } from "react-router-dom";
 
-import { signIn } from "../../store/modules/auth/actions";
-import { useAuth } from "../../hooks/auth";
-
-import FormTextInput from "../../components/FormTextInput";
-import Error from "../../components/Error";
-import ImageBackGround from "../../components/ImageBackGround";
-
-import { Container, Logo, Subtitulo, ContainerTitulo } from "./styles";
-
 import BackgroundImage from "../../assets/image/jpg/backgroundImage_login.jpg";
-import { useEffect } from "react";
+
+import Error from "../../components/Error";
+import FormTextInput from "../../components/FormTextInput";
+import Loading from "../../components/Loading";
+
+import { useAuth } from "../../hooks/auth";
+import { useIsMount } from "../../hooks/isMount";
+import { signIn } from "../../store/modules/auth/actions";
+
+import {
+  Container,
+  Logo,
+  Subtitulo,
+  ContainerTitulo,
+  ImageBackGround,
+} from "./styles";
 
 function Login() {
   const [email, setEmail] = useState("desafio@ioasys.com.br");
@@ -20,15 +26,18 @@ function Login() {
   const [error, setError] = useState(false);
 
   const user = useAuth();
+  const isMount = useIsMount();
 
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (user.access_token) {
-      navigate("/books");
-    } else {
-      if (user.current_user.loading === false) {
-        setError(!error);
+    if (!isMount) {
+      if (user.access_token) {
+        navigate("/books");
+      } else {
+        if (user.current_user.loading === false) {
+          setError(!error);
+        }
       }
     }
   }, [user]);
@@ -40,6 +49,7 @@ function Login() {
 
   return (
     <>
+      {user.current_user.loading && <Loading />}
       <ImageBackGround source={BackgroundImage} />
       <Container>
         <ContainerTitulo>

@@ -2,10 +2,10 @@ import React, { useEffect, useState } from "react";
 
 import { useNavigate } from "react-router-dom";
 
-import ImageBackGround from "../../components/ImageBackGround";
 import Book from "../../components/Book";
 import Modal from "../../components/Modal";
 import Pages from "../../components/Pages";
+import Loading from "../../components/Loading";
 
 import BackgroundImage from "../../assets/image/jpg/backgroundImages_books.png";
 import ExitIcon from "../../assets/image/svg/log_out.svg";
@@ -14,7 +14,7 @@ import { useBooks } from "../../hooks/books";
 import { useAuth } from "../../hooks/auth";
 
 import { getAll } from "../../store/modules/books/actions";
-import auth from "../../store/modules/auth/store";
+import { cleanStorage } from "../../store";
 
 import { Subtitulo } from "../Login/styles";
 
@@ -26,6 +26,7 @@ import {
   ContainerUsuario,
   Exit,
   ContainerBooks,
+  ImageBackGround,
 } from "./styles";
 
 function Books() {
@@ -63,6 +64,7 @@ function Books() {
         justifyContent: "center",
       }}
     >
+      {books.loading && <Loading />}
       <ImageBackGround source={BackgroundImage} />
       <Container>
         <ContainerCabecalho>
@@ -75,7 +77,7 @@ function Books() {
             <Exit
               source={ExitIcon}
               onClick={() => {
-                auth.clean();
+                cleanStorage();
                 navigate("/");
               }}
             />
