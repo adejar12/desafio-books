@@ -36,3 +36,13 @@ export const Subtitulo = styled.span`
   font-size: 2.8rem;
   line-height: 4rem;
 `;
+
+export const ImageBackGround = styled.div`
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  background-image: url(${(props) => props.source});
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+`;
