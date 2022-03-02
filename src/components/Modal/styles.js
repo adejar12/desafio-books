@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import { theme } from "../../utils/Colors";
+import styled from 'styled-components';
+import { theme } from '../../utils/Colors';
 
 export const Container = styled.div`
   display: flex;
@@ -73,6 +73,7 @@ export const Image = styled.div`
   @media (max-width: 686px) {
     height: 351px;
     width: 240px;
+    margin-bottom: 24px;
   }
 `;
 
